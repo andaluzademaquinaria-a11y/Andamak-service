@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0f172a">
+    <title>Andamak Servicio Técnico</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; margin: 0; }
+        .touch-target { min-height: 48px; }
+        .tab-btn { flex: 1; padding: 0.5rem; font-size: 0.875rem; font-weight: 600; border-radius: 0.5rem; transition: all 0.2s; }
+        .tab-btn.active { background-color: #334155; color: white; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+        .tab-btn.inactive { color: #94a3b8; }
+        .tab-btn.inactive:hover { color: #e2e8f0; }
+    </style>
+</head>
+<body class="antialiased bg-slate-950">
+    <!-- Punto de montaje exclusivo para React/Vite -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
