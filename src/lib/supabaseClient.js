@@ -1,9 +1,17 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+// Limpiamos la URL por si incluye /rest/v1 o barras inclinadas al final
+const getCleanUrl = () => {
+  const raw = import.meta.env.VITE_SUPABASE_URL || '';
+  if (!raw) return '';
+  const baseMatch = raw.match(/^(https:\/\/[^/]+\.supabase\.co)/);
+  let url = baseMatch ? baseMatch[1] : raw;
+  return url.endsWith('/') ? url.slice(0, -1) : url;
+};
 
-// Verificación para evitar bloqueos si faltan las credenciales
+const supabaseUrl = getCleanUrl();
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+
 export const isSupabaseConfigured = supabaseUrl.startsWith('http') && supabaseKey.length > 20;
 
 export const supabase = isSupabaseConfigured 
