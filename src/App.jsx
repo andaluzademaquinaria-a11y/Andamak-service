@@ -110,15 +110,25 @@ export default function App() {
     }
   }, [session]);
 
-  // Manejo de Acceso con Email/Password (Supabase Auth)
+  // Manejo de Acceso con Diagnóstico de Alerta
   const handleLogin = async (e) => {
     e.preventDefault();
     setAuthError('');
     setSyncStatus('Autenticando...');
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-      setAuthError(error.message);
-      setSyncStatus('Error de autenticación');
+    
+    try {
+      if (!supabase) {
+        alert("Error crítico: Supabase es null. Las variables de entorno VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY no se están cargando en Vercel.");
+        return;
+      }
+      
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        setAuthError(error.message);
+        setSyncStatus('Error de autenticación');
+      }
+    } catch (err) {
+      alert("Excepción capturada en el login: " + err.message);
     }
   };
 
